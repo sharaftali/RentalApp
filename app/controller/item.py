@@ -4,7 +4,6 @@ from app.crud.item import CrudItem
 from app.utils.logger import log
 
 
-
 class Item:
     def __init__(self):
         self.crud = CrudItem()
