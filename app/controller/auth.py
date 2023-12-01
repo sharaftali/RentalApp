@@ -1,5 +1,5 @@
 from ..auth import oauth2
-from .. import utils
+from app.utils import utils
 from ..db_models import models as db_models
 from fastapi import status, HTTPException
 

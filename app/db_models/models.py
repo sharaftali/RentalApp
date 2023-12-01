@@ -19,6 +19,24 @@ class Item(Base):
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
     updated_at = Column(TIMESTAMP(timezone=True), nullable=True, onupdate=text('now()'))
 
+    # Define one-to-one relationship with Contract
+    contract = relationship('Contract', back_populates='item', uselist=False)
+
+
+class Contract(Base):
+    __tablename__ = "contracts"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
+    start_date = Column(TIMESTAMP(timezone=True), nullable=True)
+    end_date = Column(TIMESTAMP(timezone=True), nullable=True)
+    terms = Column(String, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    updated_at = Column(TIMESTAMP(timezone=True), nullable=True, onupdate=text('now()'))
+
+    # Define the back reference for the relationship
+    item_id = Column(UUID(as_uuid=True), ForeignKey('items.id'), unique=True, nullable=False)
+    item = relationship('Item', back_populates='contract')
+
 
 class User(Base):
     __tablename__ = "users"
