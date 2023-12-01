@@ -1,6 +1,7 @@
 from sqlalchemy.orm.session import Session
 from app.schemas.item_schemas import ListOfItemOut, BaseItem, ItemOut
 from app.crud.item import CrudItem
+from app.utils.logger import log
 
 
 class Item:
@@ -16,6 +17,7 @@ class Item:
 
     def get_item_by_id(self, id: str, db: Session):
         new_data = self.crud.get_item_by_id(db=db, id=id)
+        log.debug(f"Item with id {new_data.__dict__}")
         if new_data is None:
             return
         return ItemOut(**new_data.__dict__)

@@ -1,7 +1,7 @@
 from typing import List
 from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
-
+from app.utils.logger import log
 from ..controller.user import User
 from ..db_models import models as db_models
 from ..db_models.database import get_db

@@ -1,11 +1,8 @@
-from typing import List
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 from sqlalchemy.orm.session import Session
-
+from app.utils.logger import log
 from ..auth import oauth2
 from ..db_models.database import get_db
-from ..db_models import models
-from ..schemas import schemas
 from ..schemas.item_schemas import ListOfItemOut, BaseItem, ItemOut
 from app.controller.item import Item
 

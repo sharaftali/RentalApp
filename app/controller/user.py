@@ -1,6 +1,5 @@
 from typing import List
-
-from .. import utils
+from app.utils import utils
 from ..schemas import schemas
 from ..db_models import models as db_models
 
