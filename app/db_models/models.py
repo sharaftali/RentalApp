@@ -1,5 +1,5 @@
 import uuid
-from sqlalchemy import Column, String, ForeignKey, Float, Enum
+from sqlalchemy import Column, String, ForeignKey, Float, Enum, JSON
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.expression import text
 from sqlalchemy.dialects.postgresql import UUID
@@ -36,6 +36,32 @@ class Contract(Base):
     # Define the back reference for the relationship
     item_id = Column(UUID(as_uuid=True), ForeignKey('items.id'), unique=True, nullable=False)
     item = relationship('Item', back_populates='contract')
+
+
+class TenantIn(Base):
+    __tablename__ = "tenants_in"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
+    details = Column(JSON, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    updated_at = Column(TIMESTAMP(timezone=True), nullable=True, onupdate=text('now()'))
+
+    # Define the back reference for the relationship
+    contract_id = Column(UUID(as_uuid=True), ForeignKey('contracts.id'), unique=True, nullable=False)
+    contract = relationship('Contract', back_populates='tenant_in')
+
+
+class TenantOut(Base):
+    __tablename__ = "tenants_out"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
+    details = Column(JSON, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    updated_at = Column(TIMESTAMP(timezone=True), nullable=True, onupdate=text('now()'))
+
+    # Define the back reference for the relationship
+    contract_id = Column(UUID(as_uuid=True), ForeignKey('contracts.id'), unique=True, nullable=False)
+    contract = relationship('Contract', back_populates='tenant_out')
 
 
 class User(Base):
