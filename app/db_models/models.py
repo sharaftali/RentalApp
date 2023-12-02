@@ -48,7 +48,6 @@ class TenantIn(Base):
 
     # Define the back reference for the relationship
     contract_id = Column(UUID(as_uuid=True), ForeignKey('contracts.id'), unique=True, nullable=False)
-    contract = relationship('Contract', back_populates='tenant_in')
 
 
 class TenantOut(Base):
@@ -61,7 +60,6 @@ class TenantOut(Base):
 
     # Define the back reference for the relationship
     contract_id = Column(UUID(as_uuid=True), ForeignKey('contracts.id'), unique=True, nullable=False)
-    contract = relationship('Contract', back_populates='tenant_out')
 
 
 class User(Base):
