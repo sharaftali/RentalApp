@@ -5,7 +5,7 @@ from app.schemas.tenant_in_out_schemas import BaseTenantInOut
 
 class CrudTenantOut:
 
-    def get_tenants_in_list(self, db: Session):
+    def get_tenants_out_list(self, db: Session):
         return db.query(models.TenantOut).all()
 
     def create_tenant_out(self, db: Session, data: BaseTenantInOut):

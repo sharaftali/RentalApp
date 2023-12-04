@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import user, auth, item, contract, tenant_in, tenant_out
+from .routers import user, auth, item, contract, tenant_in, tenant_out, tenant
 
 # models.Base.metadata.create_all(bind=engine)
 
@@ -22,6 +22,7 @@ app.include_router(item.router)
 app.include_router(contract.router)
 app.include_router(tenant_in.router)
 app.include_router(tenant_out.router)
+app.include_router(tenant.router)
 
 
 @app.get("/")

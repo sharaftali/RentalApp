@@ -9,7 +9,7 @@ class TenantOut:
         self.crud = CrudTenantOut()
 
     def get_tenants_out_list(self, db: Session) -> ListOfTenantOutInOut:
-        return ListOfTenantOutInOut(tenants_in_out=self.crud.get_tenants_in_list(db=db))
+        return ListOfTenantOutInOut(tenants_in_out=self.crud.get_tenants_out_list(db=db))
 
     def create_tenant_out(self, db: Session, data: BaseTenantInOut) -> TenantOutInOut:
         new_data = self.crud.create_tenant_out(db=db, data=data)

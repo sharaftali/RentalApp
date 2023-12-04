@@ -5,6 +5,7 @@ from typing import List, Optional
 
 class BaseContract(BaseModel):
     item_id: UUID4
+    tenant_id: UUID4
     start_date: datetime
     end_date: datetime
     terms: Optional[str]
